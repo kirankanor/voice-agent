@@ -1,0 +1,15 @@
+capabilities:
+  diarization: false
+  multilingual: true
+  streaming: true
+category: stt
+constraints: {}
+economics:
+  price_per_minute: 0.0043
+id: deepgram
+integration:
+  python_support: true
+  sdk: deepgram-sdk
+name: Deepgram
+performance:
+  latency_ms: 320

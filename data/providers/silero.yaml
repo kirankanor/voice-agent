@@ -1,0 +1,14 @@
+capabilities:
+  real_time: true
+  streaming: true
+category: vad
+constraints: {}
+economics:
+  price_per_minute: 0
+id: silero
+integration:
+  python_support: true
+  sdk: silero-vad
+name: Silero VAD
+performance:
+  latency_ms: 10

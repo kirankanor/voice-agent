@@ -1,0 +1,32 @@
+digraph genesis {
+  rankdir=LR;
+  node [shape=box,fontname="system-ui"];
+  "file:main.py" [label="main.py",class="file"];
+  "file:src/__init__.py" [label="src/__init__.py",class="file"];
+  "file:src/agent_config.py" [label="src/agent_config.py",class="file"];
+  "file:src/benchmarks.py" [label="src/benchmarks.py",class="file"];
+  "file:src/cli.py" [label="src/cli.py",class="file"];
+  "file:src/costs.py" [label="src/costs.py",class="file"];
+  "file:src/decisions.py" [label="src/decisions.py",class="file"];
+  "file:src/experiments.py" [label="src/experiments.py",class="file"];
+  "file:src/models/__init__.py" [label="src/models/__init__.py",class="file"];
+  "file:src/models/types.py" [label="src/models/types.py",class="file"];
+  "file:src/projects.py" [label="src/projects.py",class="file"];
+  "file:src/providers/__init__.py" [label="src/providers/__init__.py",class="file"];
+  "file:src/providers/base.py" [label="src/providers/base.py",class="file"];
+  "file:src/registry.py" [label="src/registry.py",class="file"];
+  "file:src/storage/__init__.py" [label="src/storage/__init__.py",class="file"];
+  "file:src/storage/file_store.py" [label="src/storage/file_store.py",class="file"];
+  "file:tests/__init__.py" [label="tests/__init__.py",class="file"];
+  "file:tests/test_agent_config.py" [label="tests/test_agent_config.py",class="file"];
+  "file:tests/test_benchmarks.py" [label="tests/test_benchmarks.py",class="file"];
+  "file:tests/test_cli.py" [label="tests/test_cli.py",class="file"];
+  "file:tests/test_costs.py" [label="tests/test_costs.py",class="file"];
+  "file:tests/test_decisions.py" [label="tests/test_decisions.py",class="file"];
+  "file:tests/test_experiments.py" [label="tests/test_experiments.py",class="file"];
+  "file:tests/test_foundation.py" [label="tests/test_foundation.py",class="file"];
+  "file:tests/test_projects.py" [label="tests/test_projects.py",class="file"];
+  "file:tests/test_registry.py" [label="tests/test_registry.py",class="file"];
+  "file:tests/test_storage.py" [label="tests/test_storage.py",class="file"];
+
+}

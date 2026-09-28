@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voice Agent Workbench</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f172a; color: #e2e8f0; }
+.header { background: #1e293b; padding: 16px 24px; border-bottom: 1px solid #334155; display: flex; align-items: center; gap: 12px; }
+.header h1 { font-size: 20px; font-weight: 600; }
+.header .dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; }
+.container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 32px; }
+.stat { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 16px; }
+.stat .label { font-size: 12px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat .value { font-size: 28px; font-weight: 700; margin-top: 4px; }
+.stat .value.green { color: #22c55e; }
+.stat .value.blue { color: #3b82f6; }
+.stat .value.purple { color: #a855f7; }
+.stat .value.amber { color: #f59e0b; }
+.tabs { display: flex; gap: 4px; margin-bottom: 24px; background: #1e293b; padding: 4px; border-radius: 8px; }
+.tab { padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 14px; color: #94a3b8; border: none; background: none; }
+.tab.active { background: #334155; color: #e2e8f0; }
+.tab:hover { color: #e2e8f0; }
+.panel { display: none; }
+.panel.active { display: block; }
+.card { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 20px; margin-bottom: 16px; }
+.card h3 { font-size: 16px; margin-bottom: 12px; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #334155; font-size: 14px; }
+th { color: #94a3b8; font-weight: 500; font-size: 12px; text-transform: uppercase; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 500; }
+.badge.stt { background: #1e3a5f; color: #60a5fa; }
+.badge.tts { background: #3b1f4e; color: #c084fc; }
+.badge.llm { background: #1a3a2a; color: #4ade80; }
+.badge.vad { background: #3b2f1a; color: #fbbf24; }
+.badge.active { background: #14532d; color: #4ade80; }
+.badge.archived { background: #451a1a; color: #f87171; }
+.form-row { display: flex; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.form-row input, .form-row select { background: #0f172a; border: 1px solid #334155; color: #e2e8f0; padding: 8px 12px; border-radius: 6px; font-size: 14px; }
+.form-row input { flex: 1; min-width: 150px; }
+.btn { background: #3b82f6; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; }
+.btn:hover { background: #2563eb; }
+.btn.sm { padding: 4px 10px; font-size: 12px; }
+.btn.danger { background: #dc2626; }
+.btn.danger:hover { background: #b91c1c; }
+.empty { color: #64748b; text-align: center; padding: 40px; font-size: 14px; }
+.cost-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin-top: 16px; }
+.cost-item { background: #0f172a; padding: 12px; border-radius: 6px; text-align: center; }
+.cost-item .amount { font-size: 20px; font-weight: 700; color: #22c55e; }
+.cost-item .desc { font-size: 11px; color: #94a3b8; margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="dot"></div>
+  <h1>Voice Agent Workbench</h1>
+  <a href="/playground" style="color:#3b82f6;text-decoration:none;font-size:14px;margin-left:auto;padding:8px 16px;border:1px solid #3b82f6;border-radius:6px;">Open Playground →</a>
+</div>
+
+<div class="container">
+  <div class="stats" id="stats"></div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('projects')">Projects</button>
+    <button class="tab" onclick="showTab('providers')">Providers</button>
+    <button class="tab" onclick="showTab('experiments')">Experiments</button>
+    <button class="tab" onclick="showTab('agents')">Agents</button>
+    <button class="tab" onclick="showTab('decisions')">Decisions</button>
+    <button class="tab" onclick="showTab('costs')">Costs</button>
+  </div>
+
+  <div class="panel active" id="panel-projects">
+    <div class="card">
+      <h3>Projects</h3>
+      <div class="form-row">
+        <input id="proj-id" placeholder="ID">
+        <input id="proj-name" placeholder="Name">
+        <input id="proj-lang" placeholder="Languages (hi,en)">
+        <button class="btn" onclick="createProject()">Add</button>
+      </div>
+      <table><thead><tr><th>ID</th><th>Name</th><th>Languages</th><th>Status</th><th></th></tr></thead>
+      <tbody id="projects-body"></tbody></table>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-providers">
+    <div class="card">
+      <h3>Providers</h3>
+      <button class="btn" onclick="initProviders()" style="margin-bottom:16px">Init Defaults</button>
+      <table><thead><tr><th>ID</th><th>Name</th><th>Category</th><th>Latency</th><th>Cost</th></tr></thead>
+      <tbody id="providers-body"></tbody></table>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-experiments">
+    <div class="card">
+      <h3>Experiments</h3>
+      <div class="form-row">
+        <input id="exp-id" placeholder="ID">
+        <input id="exp-project" placeholder="Project ID">
+        <input id="exp-type" placeholder="Type (stt_comparison)">
+        <button class="btn" onclick="createExperiment()">Add</button>
+      </div>
+      <table><thead><tr><th>ID</th><th>Project</th><th>Type</th><th>Providers</th><th>Status</th></tr></thead>
+      <tbody id="experiments-body"></tbody></table>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-agents">
+    <div class="card">
+      <h3>Agent Configurations</h3>
+      <div class="form-row">
+        <input id="agent-id" placeholder="ID">
+        <input id="agent-name" placeholder="Name">
+        <input id="agent-stt" placeholder="STT provider">
+        <input id="agent-tts" placeholder="TTS provider">
+        <input id="agent-llm" placeholder="LLM provider">
+        <button class="btn" onclick="createAgent()">Add</button>
+      </div>
+      <table><thead><tr><th>ID</th><th>Name</th><th>STT</th><th>TTS</th><th>LLM</th></tr></thead>
+      <tbody id="agents-body"></tbody></table>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-decisions">
+    <div class="card">
+      <h3>Decision Records</h3>
+      <div class="form-row">
+        <input id="dec-id" placeholder="ID">
+        <input id="dec-project" placeholder="Project ID">
+        <input id="dec-req" placeholder="Requirement">
+        <input id="dec-decision" placeholder="Decision">
+        <button class="btn" onclick="createDecision()">Add</button>
+      </div>
+      <table><thead><tr><th>ID</th><th>Project</th><th>Requirement</th><th>Decision</th><th>Trade-offs</th></tr></thead>
+      <tbody id="decisions-body"></tbody></table>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-costs">
+    <div class="card">
+      <h3>Cost Estimator</h3>
+      <div class="form-row">
+        <input id="cost-stt" type="number" step="0.0001" value="0.0043" placeholder="STT $/min">
+        <input id="cost-tts" type="number" step="0.00001" value="0.00003" placeholder="TTS $/char">
+        <input id="cost-llm" type="number" step="0.001" value="0.002" placeholder="LLM $/1k tokens">
+        <input id="cost-dur" type="number" step="1" value="5" placeholder="Duration (min)">
+        <input id="cost-turns" type="number" step="1" value="10" placeholder="Turns">
+        <button class="btn" onclick="estimateCost()">Estimate</button>
+      </div>
+      <div class="cost-grid" id="cost-result"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const api = '/api';
+
+async function loadDashboard() {
+  const r = await fetch(`${api}/dashboard`);
+  const d = await r.json();
+  document.getElementById('stats').innerHTML = `
+    <div class="stat"><div class="label">Projects</div><div class="value green">${d.projects}</div></div>
+    <div class="stat"><div class="label">Providers</div><div class="value blue">${d.providers}</div></div>
+    <div class="stat"><div class="label">Experiments</div><div class="value purple">${d.experiments}</div></div>
+    <div class="stat"><div class="label">Agents</div><div class="value amber">${d.agents}</div></div>
+  `;
+}
+
+function showTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById(`panel-${name}`).classList.add('active');
+  loaders[name]();
+}
+
+const loaders = {
+  projects: loadProjects,
+  providers: loadProviders,
+  experiments: loadExperiments,
+  agents: loadAgents,
+  decisions: loadDecisions,
+};
+
+async function loadProjects() {
+  const r = await fetch(`${api}/projects`);
+  const items = await r.json();
+  document.getElementById('projects-body').innerHTML = items.length ? items.map(p => `
+    <tr>
+      <td>${p.id}</td><td>${p.name}</td>
+      <td>${p.languages.join(', ')}</td>
+      <td><span class="badge ${p.status}">${p.status}</span></td>
+      <td><button class="btn sm danger" onclick="deleteProject('${p.id}')">x</button></td>
+    </tr>`).join('') : '<tr><td colspan="5" class="empty">No projects yet</td></tr>';
+}
+
+async function loadProviders() {
+  const r = await fetch(`${api}/providers`);
+  const items = await r.json();
+  document.getElementById('providers-body').innerHTML = items.length ? items.map(p => `
+    <tr>
+      <td>${p.id}</td><td>${p.name}</td>
+      <td><span class="badge ${p.category}">${p.category.toUpperCase()}</span></td>
+      <td>${p.performance.latency_ms || '-'}ms</td>
+      <td>${p.economics.price_per_minute ? '$' + p.economics.price_per_minute + '/min' : '-'}</td>
+    </tr>`).join('') : '<tr><td colspan="5" class="empty">Click "Init Defaults" to register providers</td></tr>';
+}
+
+async function loadExperiments() {
+  const r = await fetch(`${api}/experiments`);
+  const items = await r.json();
+  document.getElementById('experiments-body').innerHTML = items.length ? items.map(e => `
+    <tr>
+      <td>${e.id}</td><td>${e.project_id}</td><td>${e.type}</td>
+      <td>${e.providers.join(', ')}</td>
+      <td><span class="badge ${e.status}">${e.status}</span></td>
+    </tr>`).join('') : '<tr><td colspan="5" class="empty">No experiments yet</td></tr>';
+}
+
+async function loadAgents() {
+  const r = await fetch(`${api}/agents`);
+  const items = await r.json();
+  document.getElementById('agents-body').innerHTML = items.length ? items.map(a => `
+    <tr>
+      <td>${a.id}</td><td>${a.agent?.name || '-'}</td>
+      <td>${a.stt?.provider || '-'}</td>
+      <td>${a.tts?.provider || '-'}</td>
+      <td>${a.llm?.provider || '-'}</td>
+    </tr>`).join('') : '<tr><td colspan="5" class="empty">No agent configs yet</td></tr>';
+}
+
+async function loadDecisions() {
+  const r = await fetch(`${api}/decisions`);
+  const items = await r.json();
+  document.getElementById('decisions-body').innerHTML = items.length ? items.map(d => `
+    <tr>
+      <td>${d.id}</td><td>${d.project_id}</td><td>${d.requirement}</td>
+      <td>${d.decision || 'pending'}</td><td>${d.trade_offs || '-'}</td>
+    </tr>`).join('') : '<tr><td colspan="5" class="empty">No decisions yet</td></tr>';
+}
+
+async function createProject() {
+  const id = document.getElementById('proj-id').value;
+  const name = document.getElementById('proj-name').value;
+  const langs = document.getElementById('proj-lang').value.split(',').map(s => s.trim()).filter(Boolean);
+  if (!id || !name) return alert('ID and Name required');
+  await fetch(`${api}/projects`, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({id, name, languages: langs}) });
+  document.getElementById('proj-id').value = '';
+  document.getElementById('proj-name').value = '';
+  document.getElementById('proj-lang').value = '';
+  loadProjects(); loadDashboard();
+}
+
+async function deleteProject(id) {
+  await fetch(`${api}/projects/${id}`, { method: 'DELETE' });
+  loadProjects(); loadDashboard();
+}
+
+async function initProviders() {
+  await fetch(`${api}/providers/init`, { method: 'POST' });
+  loadProviders(); loadDashboard();
+}
+
+async function createExperiment() {
+  const id = document.getElementById('exp-id').value;
+  const project_id = document.getElementById('exp-project').value;
+  const experiment_type = document.getElementById('exp-type').value;
+  if (!id || !project_id || !experiment_type) return alert('All fields required');
+  await fetch(`${api}/experiments`, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({id, project_id, experiment_type}) });
+  document.getElementById('exp-id').value = '';
+  document.getElementById('exp-project').value = '';
+  document.getElementById('exp-type').value = '';
+  loadExperiments(); loadDashboard();
+}
+
+async function createAgent() {
+  const id = document.getElementById('agent-id').value;
+  const name = document.getElementById('agent-name').value;
+  const stt_provider = document.getElementById('agent-stt').value || null;
+  const tts_provider = document.getElementById('agent-tts').value || null;
+  const llm_provider = document.getElementById('agent-llm').value || null;
+  if (!id || !name) return alert('ID and Name required');
+  await fetch(`${api}/agents`, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({id, name, stt_provider, tts_provider, llm_provider}) });
+  document.getElementById('agent-id').value = '';
+  document.getElementById('agent-name').value = '';
+  document.getElementById('agent-stt').value = '';
+  document.getElementById('agent-tts').value = '';
+  document.getElementById('agent-llm').value = '';
+  loadAgents(); loadDashboard();
+}
+
+async function createDecision() {
+  const id = document.getElementById('dec-id').value;
+  const project_id = document.getElementById('dec-project').value;
+  const requirement = document.getElementById('dec-req').value;
+  const decision = document.getElementById('dec-decision').value;
+  if (!id || !project_id || !requirement) return alert('ID, Project, and Requirement required');
+  await fetch(`${api}/decisions`, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({id, project_id, requirement, decision}) });
+  document.getElementById('dec-id').value = '';
+  document.getElementById('dec-project').value = '';
+  document.getElementById('dec-req').value = '';
+  document.getElementById('dec-decision').value = '';
+  loadDecisions(); loadDashboard();
+}
+
+async function estimateCost() {
+  const body = {
+    stt_cost_per_min: parseFloat(document.getElementById('cost-stt').value),
+    tts_cost_per_char: parseFloat(document.getElementById('cost-tts').value),
+    llm_cost_per_1k_tokens: parseFloat(document.getElementById('cost-llm').value),
+    conversation_duration_min: parseFloat(document.getElementById('cost-dur').value),
+    avg_turns: parseInt(document.getElementById('cost-turns').value),
+  };
+  const r = await fetch(`${api}/costs/estimate`, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(body) });
+  const d = await r.json();
+  document.getElementById('cost-result').innerHTML = `
+    <div class="cost-item"><div class="amount">$${d.stt}</div><div class="desc">STT</div></div>
+    <div class="cost-item"><div class="amount">$${d.tts}</div><div class="desc">TTS</div></div>
+    <div class="cost-item"><div class="amount">$${d.llm}</div><div class="desc">LLM</div></div>
+    <div class="cost-item"><div class="amount" style="color:#3b82f6">$${d.total}</div><div class="desc">Total / conv</div></div>
+    <div class="cost-item"><div class="amount" style="color:#f59e0b">$${d.per_minute}</div><div class="desc">Per minute</div></div>
+    <div class="cost-item"><div class="amount" style="color:#a855f7">$${d.per_1k_conversations}</div><div class="desc">Per 1k conv</div></div>
+  `;
+}
+
+loadDashboard();
+loadProjects();
+</script>
+</body>
+</html>

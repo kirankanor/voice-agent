@@ -1,0 +1,290 @@
+{
+  "schemaVersion": 2,
+  "project": "voice-agent",
+  "revision": "828851d012f829775da5196145528456e263497d",
+  "sourceHash": "bd2f378a1d26d3e950a3d88e12c556f5322b2f81db8f3fda8e72c7fdab85dfd1",
+  "provenance": {
+    "tool": "genesis-graphizer",
+    "method": "static-analysis",
+    "confidenceScale": "0..1"
+  },
+  "nodes": [
+    {
+      "id": "file:main.py",
+      "type": "file",
+      "label": "main.py",
+      "path": "main.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "d5f2389e1c312321a386d2ad6119a3a20a0d63bf1aab9536146f353f83ccf1f2"
+    },
+    {
+      "id": "file:src/__init__.py",
+      "type": "file",
+      "label": "src/__init__.py",
+      "path": "src/__init__.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "file:src/agent_config.py",
+      "type": "file",
+      "label": "src/agent_config.py",
+      "path": "src/agent_config.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "5bdf56c3711634f7670f28e74d5b585f73cd21248124f966ffc200329d22b652"
+    },
+    {
+      "id": "file:src/benchmarks.py",
+      "type": "file",
+      "label": "src/benchmarks.py",
+      "path": "src/benchmarks.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "e6ce0cb8373c1c79eea5e94de9cfe689eebe79d14a7ad51cbd44ad71d3e4309b"
+    },
+    {
+      "id": "file:src/cli.py",
+      "type": "file",
+      "label": "src/cli.py",
+      "path": "src/cli.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "9efa7038f790e582bbb66a4cb1326ccc9f5a0ba697fb8f26719b8045a28ac264"
+    },
+    {
+      "id": "file:src/costs.py",
+      "type": "file",
+      "label": "src/costs.py",
+      "path": "src/costs.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "661322868106b23bd58a26c90e6fc0a49dc6ef22bc13e5d3cd7c435421a431b9"
+    },
+    {
+      "id": "file:src/decisions.py",
+      "type": "file",
+      "label": "src/decisions.py",
+      "path": "src/decisions.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "c62adc77717f66d12e2a5176e25cc8915ab23d5ba734fc50057006c28632607b"
+    },
+    {
+      "id": "file:src/experiments.py",
+      "type": "file",
+      "label": "src/experiments.py",
+      "path": "src/experiments.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "2b92e129ab9463322cbaad81ff448b67379b8de246af11046802ff00f4cc1e71"
+    },
+    {
+      "id": "file:src/models/__init__.py",
+      "type": "file",
+      "label": "src/models/__init__.py",
+      "path": "src/models/__init__.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "1ec7c50d226cf9c5a13d9c14863da36fb8bc98494592320f3d4ebf50aa6e5d9a"
+    },
+    {
+      "id": "file:src/models/types.py",
+      "type": "file",
+      "label": "src/models/types.py",
+      "path": "src/models/types.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "cc4cb3a65e53cda0153d2876bf71470cc94b441cb2676289d52637a96655913a"
+    },
+    {
+      "id": "file:src/projects.py",
+      "type": "file",
+      "label": "src/projects.py",
+      "path": "src/projects.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "ea8bb8af8b47d558e11ebbe648b74f3973d67bb8f96d1c934aaf0e3a73daa399"
+    },
+    {
+      "id": "file:src/providers/__init__.py",
+      "type": "file",
+      "label": "src/providers/__init__.py",
+      "path": "src/providers/__init__.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "55f3363c4b30a77cb38e30bce011cc0704fb950e6171af30cf38f9b32b94dddb"
+    },
+    {
+      "id": "file:src/providers/base.py",
+      "type": "file",
+      "label": "src/providers/base.py",
+      "path": "src/providers/base.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "36806c0237588e56922b9f47f6f3c4a6b0ab5f3f9dc93791083a7985fe4d2d73"
+    },
+    {
+      "id": "file:src/registry.py",
+      "type": "file",
+      "label": "src/registry.py",
+      "path": "src/registry.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "4e4e0f70ae0bddb9b141ff27f68f20f203a570784f6ded50ae671284ac4faf21"
+    },
+    {
+      "id": "file:src/storage/__init__.py",
+      "type": "file",
+      "label": "src/storage/__init__.py",
+      "path": "src/storage/__init__.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "ff1d5b2534c526fb0f5957066ac752133a88aec61b0225f74176f1cb7ad710bb"
+    },
+    {
+      "id": "file:src/storage/file_store.py",
+      "type": "file",
+      "label": "src/storage/file_store.py",
+      "path": "src/storage/file_store.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "c6d15a88e7ac6241e87cc53479dd2d61c32ab5084c017f7be0c96914856577b8"
+    },
+    {
+      "id": "file:tests/__init__.py",
+      "type": "file",
+      "label": "tests/__init__.py",
+      "path": "tests/__init__.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": "file:tests/test_agent_config.py",
+      "type": "file",
+      "label": "tests/test_agent_config.py",
+      "path": "tests/test_agent_config.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "3c0befc57766ec5a9906280e406e558f399b3552bd41234c0169a922a98c7fc7"
+    },
+    {
+      "id": "file:tests/test_benchmarks.py",
+      "type": "file",
+      "label": "tests/test_benchmarks.py",
+      "path": "tests/test_benchmarks.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "6b6d2663806fecc7613020af0894e66a9c0c927f3b0ce53b8b482855a992de61"
+    },
+    {
+      "id": "file:tests/test_cli.py",
+      "type": "file",
+      "label": "tests/test_cli.py",
+      "path": "tests/test_cli.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "a3708fba26d3d361ab557166760c5e47f7cc2db14a336749230d21f43dd2144f"
+    },
+    {
+      "id": "file:tests/test_costs.py",
+      "type": "file",
+      "label": "tests/test_costs.py",
+      "path": "tests/test_costs.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "92cad700521009a32b5e250532c3f463ff85fcba92547a06ad639410d2fe1d2c"
+    },
+    {
+      "id": "file:tests/test_decisions.py",
+      "type": "file",
+      "label": "tests/test_decisions.py",
+      "path": "tests/test_decisions.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "2f5b2a798f6127bbca8bb1a01ffcfbcee13a3502e31c71e3538f6e458e2be9ec"
+    },
+    {
+      "id": "file:tests/test_experiments.py",
+      "type": "file",
+      "label": "tests/test_experiments.py",
+      "path": "tests/test_experiments.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "7c586bca98ef1cfa9a499b37826ed35641f388a264cf756508b7e93d526f9cde"
+    },
+    {
+      "id": "file:tests/test_foundation.py",
+      "type": "file",
+      "label": "tests/test_foundation.py",
+      "path": "tests/test_foundation.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "37db9a87c32b896bf84502a8d289529a0373e2a8efe188bc5ff9530d2cac4db4"
+    },
+    {
+      "id": "file:tests/test_projects.py",
+      "type": "file",
+      "label": "tests/test_projects.py",
+      "path": "tests/test_projects.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "0bef7703181458f5481e04d360ae3aa73f960245eac31fb8a98e50ec5fa17d13"
+    },
+    {
+      "id": "file:tests/test_registry.py",
+      "type": "file",
+      "label": "tests/test_registry.py",
+      "path": "tests/test_registry.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "09b17f7ec8c0800b79bc1a90b92bfd99b9d2e09ca13fff545adbae014643b937"
+    },
+    {
+      "id": "file:tests/test_storage.py",
+      "type": "file",
+      "label": "tests/test_storage.py",
+      "path": "tests/test_storage.py",
+      "language": "python",
+      "confidence": 1,
+      "extractor": "filesystem",
+      "contentHash": "7eea8c24f259125a9f517b26c9f2fae1a90bfe978d819999087f44390f40c11f"
+    }
+  ],
+  "edges": [],
+  "warnings": [
+    "Python AST unavailable: Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases."
+  ],
+  "stats": {
+    "unresolvedCalls": 0
+  }
+}

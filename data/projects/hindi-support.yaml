@@ -1,0 +1,9 @@
+budget: null
+id: hindi-support
+languages:
+- hi
+- en
+latency_target_ms: null
+name: Hindi Customer Support
+status: active
+use_case: ''

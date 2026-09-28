@@ -1,0 +1,30 @@
+{
+  "task": "TASK-11",
+  "gate": "verify",
+  "kind": "command",
+  "attempt": "973edd43-104c-4a99-bb2b-007978ee0f65",
+  "command": "git status --porcelain",
+  "started_at": "2026-09-27T12:01:23.274Z",
+  "observed_at": "2026-09-27T12:01:25.023Z",
+  "exit_code": 0,
+  "signal": null,
+  "stdout": " M .gitignore\n M pyproject.toml\n?? .genesis/\n?? AGENTS.md\n?? CLAUDE.md\n?? SPEC.md\n?? src/\n?? tests/\n?? voice-agent-engineering-workbench.md\n",
+  "stderr": "",
+  "failure": null,
+  "receipt": null,
+  "revision": {
+    "commit": "828851d012f829775da5196145528456e263497d",
+    "dirty": true
+  },
+  "source_hash": "17f19dfe1e1c23779293ea3bebb27d5d83434616c541a055361b82d89e149120",
+  "before_hash": "17f19dfe1e1c23779293ea3bebb27d5d83434616c541a055361b82d89e149120",
+  "config_hash": "8e86f859725a3dbcb185e149557c21f7381644793c93d1737ec6412b3c96a37c",
+  "environment": {
+    "node": "v24.11.1",
+    "platform": "win32",
+    "arch": "x64",
+    "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+    "variables": {}
+  },
+  "hash": "248ed9a6cfb3b57fbed8854f5a2928e23f8a5ec34b96ce0a7502238cd1d05623"
+}

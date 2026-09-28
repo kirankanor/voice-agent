@@ -1,0 +1,1035 @@
+{
+  "schema_version": 2,
+  "project": {
+    "name": "voice-agent",
+    "mode": "adopt",
+    "profile": "prototype",
+    "objective": "Build a private engineering operating system for repeatedly designing, testing, optimizing, and deploying voice agents across client projects",
+    "constraints": [],
+    "non_goals": [],
+    "trust_boundary": "local repository",
+    "created_at": "2026-09-27T11:30:15.279Z",
+    "updated_at": "2026-09-27T12:16:35.211Z"
+  },
+  "policy": {
+    "ponytail": "full",
+    "autonomy": "human-in-the-loop",
+    "learned_rule_promotion": "human-required",
+    "cleanup": "propose-only",
+    "traces": {
+      "storage": "local",
+      "commit_raw": false,
+      "redact_secrets": true
+    }
+  },
+  "lifecycle": {
+    "phase": "build",
+    "status": "ready",
+    "active_task": null,
+    "blocker": null,
+    "next_action": "Add the next approved implementation task."
+  },
+  "commands": {
+    "test": {
+      "command": "python -m pytest",
+      "status": "unverified",
+      "source": "pyproject.toml"
+    }
+  },
+  "workflow": {
+    "type": "new-product",
+    "started_at": "2026-09-27T11:34:37.227Z",
+    "spec_check": {
+      "at": "2026-09-27T11:40:46.024Z",
+      "source_hash": "343888e96ee323d68288de325aa0021836651e2616f7c1f86b52bce5b8698ce1",
+      "requirements": [
+        "AC-001",
+        "AC-002",
+        "AC-003",
+        "AC-004",
+        "AC-005",
+        "AC-006",
+        "AC-007",
+        "FR-001",
+        "FR-002",
+        "FR-003",
+        "FR-004",
+        "FR-005",
+        "FR-006",
+        "FR-007",
+        "NFR-001",
+        "NFR-002",
+        "NFR-003",
+        "NFR-004",
+        "NFR-005"
+      ]
+    },
+    "plan_check": {
+      "at": "2026-09-27T12:15:46.747Z",
+      "source_hash": "1e3847013d1c92ee84962af2fa59923b2027ecb60a5bee93db2dc76073e6cfb4"
+    },
+    "plan_approval": {
+      "human": "kiran",
+      "reason": "Re-approved after TASK-9 CLI",
+      "at": "2026-09-27T12:15:47.830Z",
+      "source_hash": "1e3847013d1c92ee84962af2fa59923b2027ecb60a5bee93db2dc76073e6cfb4"
+    }
+  },
+  "artifacts": [
+    {
+      "id": "SPEC-1",
+      "type": "specification",
+      "path": "SPEC.md",
+      "status": "approved",
+      "requirements": [
+        "AC-001",
+        "AC-002",
+        "AC-003",
+        "AC-004",
+        "AC-005",
+        "AC-006",
+        "AC-007",
+        "FR-001",
+        "FR-002",
+        "FR-003",
+        "FR-004",
+        "FR-005",
+        "FR-006",
+        "FR-007",
+        "NFR-001",
+        "NFR-002",
+        "NFR-003",
+        "NFR-004",
+        "NFR-005"
+      ],
+      "source_hash": "343888e96ee323d68288de325aa0021836651e2616f7c1f86b52bce5b8698ce1",
+      "approval": {
+        "human": "kiran",
+        "reason": "Approved SPEC.md with 19 requirements for V0 personal CLI scope",
+        "at": "2026-09-27T11:45:07.079Z",
+        "source_hash": "343888e96ee323d68288de325aa0021836651e2616f7c1f86b52bce5b8698ce1"
+      }
+    }
+  ],
+  "assumptions": [],
+  "invariants": [],
+  "decisions": [],
+  "knowledge": [],
+  "tasks": [
+    {
+      "id": "SPEC-1",
+      "outcome": "Produce an approved, implementation-ready product specification",
+      "state": "done",
+      "risk": "medium",
+      "owner": null,
+      "scope": [
+        "SPEC.md"
+      ],
+      "dependencies": [],
+      "requirements": [],
+      "gates": [
+        {
+          "id": "independent-review",
+          "command": "",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "human": "kiran",
+            "reason": "Approved SPEC.md with 19 requirements for V0 personal CLI scope",
+            "source_hash": "11738811b4d0e9f443a0f8609439a1a38dd010a15bbb60d68ffc90e41d7abb58",
+            "observed_at": "2026-09-27T11:45:07.079Z"
+          },
+          "kind": "review"
+        }
+      ],
+      "next_action": "Interview the human, record durable context, and replace every placeholder in SPEC.md.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-27T11:34:37.241Z",
+      "updated_at": "2026-09-27T11:45:07.079Z"
+    },
+    {
+      "id": "FOUNDATION",
+      "outcome": "Set up project structure, provider abstraction layer (Protocol classes), and base storage module",
+      "state": "done",
+      "risk": "low",
+      "owner": null,
+      "scope": [],
+      "dependencies": [],
+      "requirements": [
+        "NFR-003",
+        "NFR-004"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "verify",
+          "kind": "command",
+          "command": "python -c \"from src.providers.base import STTProvider, TTSProvider, LLMProvider, VADProvider; print('protocols ok')\"",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Create project layout with Protocol classes for providers and file-based storage utilities.",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-27T11:45:32.425Z",
+      "updated_at": "2026-09-27T11:45:32.427Z",
+      "base_manifest": {
+        ".env": "091909bfe90b9ab550edc878e38b3703540cce89cc59ac529b678a831d1b75b1",
+        ".gitignore": "70693737f482cd0376c4938c3c4df7f65fe2b1e070c101ff411a3f26da6a6adc",
+        ".python-version": "cf842d27b2e4ee76c96e26412d2fee454f74632d6a35f1fd821a5020da0b3965",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "README.md": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "SPEC.md": "f251df7d8a684f2ad63cca9fcd4107b3c1db7e815be9e5df63375443950e79c8",
+        "config.json": "f1e454dd8e1a41a4f8101fd6d463a35c720cbf940da5ebe9cb4d692f046e90b7",
+        "main.py": "36c2d37403ad19aebebee393a6959153a723dd9c6c04c081d52bcd51f6055a6f",
+        "pyproject.toml": "b277bed0912aa5c63153865d125120ae60248b86a98d2503f55527da7bb133f7",
+        "uv.lock": "11f323f30bf7ccac532ac0b9c1f9cae675dfadb7c663f9a2b68b6a9623a4618b",
+        "voice-agent-engineering-workbench.md": "39ea5f45d25596aa92d4ecb22d305134b83af4fbb80dea08f67b9e2d7061e812"
+      }
+    },
+    {
+      "id": "TASK-1",
+      "outcome": "Set up project structure and provider abstraction layer",
+      "state": "done",
+      "risk": "low",
+      "owner": null,
+      "scope": [
+        "src",
+        "tests"
+      ],
+      "dependencies": [],
+      "requirements": [
+        "NFR-003",
+        "NFR-004"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "verify",
+          "kind": "command",
+          "command": "python -c \"from src.providers.base import STTProvider, TTSProvider, LLMProvider, VADProvider; print('protocols ok')\"",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/TASK-1-verify-ff811aae-a692-486c-9d40-51c16dd8c6aa.json",
+            "hash": "d85c0ff80188e8008b5e2c1b54c6aac301f1ec6ad9dc06f0c1dc707896812500",
+            "source_hash": "92b603fa9cd019dcbc957e613c5a992435883f1a4d81f23866d194a057e0a8cb",
+            "config_hash": "2834759c84a25cc745c9c76bb3be7ddd42bffe20a695b43b283a2bf1fc1265de",
+            "observed_at": "2026-09-27T11:53:59.229Z"
+          }
+        }
+      ],
+      "next_action": "Create project layout with Protocol classes",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-27T11:45:48.551Z",
+      "updated_at": "2026-09-27T11:54:55.713Z",
+      "base_manifest": {
+        ".env": "091909bfe90b9ab550edc878e38b3703540cce89cc59ac529b678a831d1b75b1",
+        ".gitignore": "70693737f482cd0376c4938c3c4df7f65fe2b1e070c101ff411a3f26da6a6adc",
+        ".python-version": "cf842d27b2e4ee76c96e26412d2fee454f74632d6a35f1fd821a5020da0b3965",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "README.md": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "SPEC.md": "f251df7d8a684f2ad63cca9fcd4107b3c1db7e815be9e5df63375443950e79c8",
+        "config.json": "f1e454dd8e1a41a4f8101fd6d463a35c720cbf940da5ebe9cb4d692f046e90b7",
+        "main.py": "36c2d37403ad19aebebee393a6959153a723dd9c6c04c081d52bcd51f6055a6f",
+        "pyproject.toml": "39a612922a8ffba4fb1b37cc58ebd7eea1bdb2b283abef3111c7a67fb1c9bcd0",
+        "src/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "src/models/__init__.py": "985f32437eefcef5065a41b9b715db535d8f684b82ed793149ac0e0a7c700627",
+        "src/models/types.py": "9a385a25563c2ecadcf343edd8a1ca5c2fb6116271c5c492c4769455b70df52e",
+        "src/providers/__init__.py": "2eced958d6c8fd47805faa2de05aa3d6ddc4efc411b20763ff170376ffb76476",
+        "src/providers/base.py": "98f23bcdd947ce5c1c7550ee7545fcda87b4d72252012212b3fb6f8add5adb3a",
+        "src/storage/__init__.py": "53ac97ef0f76901d4cd77dbe5130c9e7184e648679b68136c5620f9a88373753",
+        "src/storage/file_store.py": "1c62823344be5d56ff224c68fc2760bbd09193d8a358ca001b6c42d17b81d5ff",
+        "tests/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "tests/test_foundation.py": "4878930b876a6ca697b15e42ebb0b22b44deff155f1ae17cb779ad9fa210752e",
+        "uv.lock": "11f323f30bf7ccac532ac0b9c1f9cae675dfadb7c663f9a2b68b6a9623a4618b",
+        "voice-agent-engineering-workbench.md": "39ea5f45d25596aa92d4ecb22d305134b83af4fbb80dea08f67b9e2d7061e812"
+      }
+    },
+    {
+      "id": "TASK-2",
+      "outcome": "Implement project management module",
+      "state": "done",
+      "risk": "low",
+      "owner": null,
+      "scope": [
+        "src",
+        "tests"
+      ],
+      "dependencies": [
+        "TASK-1"
+      ],
+      "requirements": [
+        "FR-001",
+        "AC-001"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "verify",
+          "kind": "command",
+          "command": "python -m pytest tests/test_projects.py -v",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/TASK-2-verify-524e4318-5642-431d-9b3c-28e02cfd63d1.json",
+            "hash": "25db0765ba6361ee15540855050f6a1cfb5831b4cfac82ef41bd8bde74df4778",
+            "source_hash": "8059e57f7bec15b938fe33206d1ad3e6a5ecdbabfb6309acfbd205b35fc3d434",
+            "config_hash": "d54bab7ddc42ba38f544af8770f947ee33b6338af91a757c9f9ced5afa3d3ef9",
+            "observed_at": "2026-09-27T11:56:49.9Z"
+          }
+        }
+      ],
+      "next_action": "Create project CRUD operations with YAML storage",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-27T11:45:58.776Z",
+      "updated_at": "2026-09-27T11:45:58.778Z",
+      "base_manifest": {
+        ".env": "091909bfe90b9ab550edc878e38b3703540cce89cc59ac529b678a831d1b75b1",
+        ".gitignore": "70693737f482cd0376c4938c3c4df7f65fe2b1e070c101ff411a3f26da6a6adc",
+        ".python-version": "cf842d27b2e4ee76c96e26412d2fee454f74632d6a35f1fd821a5020da0b3965",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "README.md": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "SPEC.md": "f251df7d8a684f2ad63cca9fcd4107b3c1db7e815be9e5df63375443950e79c8",
+        "config.json": "f1e454dd8e1a41a4f8101fd6d463a35c720cbf940da5ebe9cb4d692f046e90b7",
+        "main.py": "36c2d37403ad19aebebee393a6959153a723dd9c6c04c081d52bcd51f6055a6f",
+        "pyproject.toml": "39a612922a8ffba4fb1b37cc58ebd7eea1bdb2b283abef3111c7a67fb1c9bcd0",
+        "src/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "src/models/__init__.py": "985f32437eefcef5065a41b9b715db535d8f684b82ed793149ac0e0a7c700627",
+        "src/models/types.py": "9a385a25563c2ecadcf343edd8a1ca5c2fb6116271c5c492c4769455b70df52e",
+        "src/providers/__init__.py": "2eced958d6c8fd47805faa2de05aa3d6ddc4efc411b20763ff170376ffb76476",
+        "src/providers/base.py": "98f23bcdd947ce5c1c7550ee7545fcda87b4d72252012212b3fb6f8add5adb3a",
+        "src/storage/__init__.py": "53ac97ef0f76901d4cd77dbe5130c9e7184e648679b68136c5620f9a88373753",
+        "src/storage/file_store.py": "1c62823344be5d56ff224c68fc2760bbd09193d8a358ca001b6c42d17b81d5ff",
+        "tests/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "tests/test_foundation.py": "4878930b876a6ca697b15e42ebb0b22b44deff155f1ae17cb779ad9fa210752e",
+        "uv.lock": "11f323f30bf7ccac532ac0b9c1f9cae675dfadb7c663f9a2b68b6a9623a4618b",
+        "voice-agent-engineering-workbench.md": "39ea5f45d25596aa92d4ecb22d305134b83af4fbb80dea08f67b9e2d7061e812"
+      }
+    },
+    {
+      "id": "TASK-3",
+      "outcome": "Implement component registry with provider metadata",
+      "state": "done",
+      "risk": "low",
+      "owner": null,
+      "scope": [
+        "src",
+        "tests"
+      ],
+      "dependencies": [
+        "TASK-1"
+      ],
+      "requirements": [
+        "FR-002",
+        "AC-002"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "verify",
+          "kind": "command",
+          "command": "python -m pytest tests/test_registry.py -v",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/TASK-3-verify-602b9093-eb2f-47ff-b0b9-20635121c7ca.json",
+            "hash": "718ea53aafce4c8e7c04dc8127db33d062eb740edf3898390682cbcb7f77f3f8",
+            "source_hash": "07ff1041612b6076e922311e154460e20333719d171c7d29eb20a33d31ba83aa",
+            "config_hash": "8e05a3cb6d3da22c700a62402fab3f8c40a4e22b13fc653445b962cfc3daab6b",
+            "observed_at": "2026-09-27T11:59:13.264Z"
+          }
+        }
+      ],
+      "next_action": "Create provider registry with Deepgram, ElevenLabs, OpenAI, Silero entries",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-27T11:46:00.654Z",
+      "updated_at": "2026-09-27T11:46:00.656Z",
+      "base_manifest": {
+        ".env": "091909bfe90b9ab550edc878e38b3703540cce89cc59ac529b678a831d1b75b1",
+        ".gitignore": "70693737f482cd0376c4938c3c4df7f65fe2b1e070c101ff411a3f26da6a6adc",
+        ".python-version": "cf842d27b2e4ee76c96e26412d2fee454f74632d6a35f1fd821a5020da0b3965",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "README.md": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "SPEC.md": "f251df7d8a684f2ad63cca9fcd4107b3c1db7e815be9e5df63375443950e79c8",
+        "config.json": "f1e454dd8e1a41a4f8101fd6d463a35c720cbf940da5ebe9cb4d692f046e90b7",
+        "main.py": "36c2d37403ad19aebebee393a6959153a723dd9c6c04c081d52bcd51f6055a6f",
+        "pyproject.toml": "39a612922a8ffba4fb1b37cc58ebd7eea1bdb2b283abef3111c7a67fb1c9bcd0",
+        "src/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "src/models/__init__.py": "985f32437eefcef5065a41b9b715db535d8f684b82ed793149ac0e0a7c700627",
+        "src/models/types.py": "9a385a25563c2ecadcf343edd8a1ca5c2fb6116271c5c492c4769455b70df52e",
+        "src/projects.py": "18c6fd90fc7d1b3febd01af1f7993d53c084a9e58f86dd8b50fd7e835a258eac",
+        "src/providers/__init__.py": "2eced958d6c8fd47805faa2de05aa3d6ddc4efc411b20763ff170376ffb76476",
+        "src/providers/base.py": "98f23bcdd947ce5c1c7550ee7545fcda87b4d72252012212b3fb6f8add5adb3a",
+        "src/storage/__init__.py": "53ac97ef0f76901d4cd77dbe5130c9e7184e648679b68136c5620f9a88373753",
+        "src/storage/file_store.py": "6d9339e82403faccc497e5aef4f07d690841dd9065948c519889eb0654d04821",
+        "tests/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "tests/test_foundation.py": "4878930b876a6ca697b15e42ebb0b22b44deff155f1ae17cb779ad9fa210752e",
+        "tests/test_projects.py": "2a8e69e21a89f44e9f452af292c2472fc70036a0583bee4881ba301e6d1cc1f5",
+        "uv.lock": "11f323f30bf7ccac532ac0b9c1f9cae675dfadb7c663f9a2b68b6a9623a4618b",
+        "voice-agent-engineering-workbench.md": "39ea5f45d25596aa92d4ecb22d305134b83af4fbb80dea08f67b9e2d7061e812"
+      }
+    },
+    {
+      "id": "TASK-4",
+      "outcome": "Implement experiment definitions and lifecycle",
+      "state": "done",
+      "risk": "low",
+      "owner": null,
+      "scope": [
+        "src",
+        "tests"
+      ],
+      "dependencies": [
+        "TASK-2",
+        "TASK-3"
+      ],
+      "requirements": [
+        "FR-003",
+        "AC-003"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "verify",
+          "kind": "command",
+          "command": "python -m pytest tests/test_experiments.py -v",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Create experiment definition, status tracking, and result storage",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-27T11:46:03.179Z",
+      "updated_at": "2026-09-27T11:46:03.18Z",
+      "base_manifest": {
+        ".env": "091909bfe90b9ab550edc878e38b3703540cce89cc59ac529b678a831d1b75b1",
+        ".gitignore": "75251acccf72b54b758b79c46585fa366ecf5430a19dce2abad2a98242d5778d",
+        ".python-version": "cf842d27b2e4ee76c96e26412d2fee454f74632d6a35f1fd821a5020da0b3965",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "README.md": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "SPEC.md": "f251df7d8a684f2ad63cca9fcd4107b3c1db7e815be9e5df63375443950e79c8",
+        "config.json": "f1e454dd8e1a41a4f8101fd6d463a35c720cbf940da5ebe9cb4d692f046e90b7",
+        "main.py": "36c2d37403ad19aebebee393a6959153a723dd9c6c04c081d52bcd51f6055a6f",
+        "pyproject.toml": "39a612922a8ffba4fb1b37cc58ebd7eea1bdb2b283abef3111c7a67fb1c9bcd0",
+        "src/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "src/models/__init__.py": "985f32437eefcef5065a41b9b715db535d8f684b82ed793149ac0e0a7c700627",
+        "src/models/types.py": "9a385a25563c2ecadcf343edd8a1ca5c2fb6116271c5c492c4769455b70df52e",
+        "src/projects.py": "18c6fd90fc7d1b3febd01af1f7993d53c084a9e58f86dd8b50fd7e835a258eac",
+        "src/providers/__init__.py": "2eced958d6c8fd47805faa2de05aa3d6ddc4efc411b20763ff170376ffb76476",
+        "src/providers/base.py": "98f23bcdd947ce5c1c7550ee7545fcda87b4d72252012212b3fb6f8add5adb3a",
+        "src/registry.py": "5a33fae36a537a728573116e6767e73550055517032ac6ff3e333c6f03d4897e",
+        "src/storage/__init__.py": "53ac97ef0f76901d4cd77dbe5130c9e7184e648679b68136c5620f9a88373753",
+        "src/storage/file_store.py": "6d9339e82403faccc497e5aef4f07d690841dd9065948c519889eb0654d04821",
+        "tests/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "tests/test_foundation.py": "4878930b876a6ca697b15e42ebb0b22b44deff155f1ae17cb779ad9fa210752e",
+        "tests/test_projects.py": "2a8e69e21a89f44e9f452af292c2472fc70036a0583bee4881ba301e6d1cc1f5",
+        "tests/test_registry.py": "0a511973ffd8602a570e69bb093fbe4be5ef2c7d27af8edbd165940d81d302b1",
+        "tests/test_storage.py": "1502b01b65268455ea3b86337fb481d5f335979b4ed798b0fbe99e023a4dc276",
+        "uv.lock": "11f323f30bf7ccac532ac0b9c1f9cae675dfadb7c663f9a2b68b6a9623a4618b",
+        "voice-agent-engineering-workbench.md": "39ea5f45d25596aa92d4ecb22d305134b83af4fbb80dea08f67b9e2d7061e812"
+      }
+    },
+    {
+      "id": "TASK-5",
+      "outcome": "Implement benchmark result storage",
+      "state": "done",
+      "risk": "low",
+      "owner": null,
+      "scope": [
+        "src",
+        "tests"
+      ],
+      "dependencies": [
+        "TASK-4"
+      ],
+      "requirements": [
+        "FR-004",
+        "AC-004"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "verify",
+          "kind": "command",
+          "command": "python -m pytest tests/test_benchmarks.py -v",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Create benchmark storage with metrics and raw evidence",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-27T11:46:04.508Z",
+      "updated_at": "2026-09-27T11:46:04.509Z"
+    },
+    {
+      "id": "TASK-6",
+      "outcome": "Implement declarative agent configuration",
+      "state": "done",
+      "risk": "low",
+      "owner": null,
+      "scope": [
+        "src",
+        "tests"
+      ],
+      "dependencies": [
+        "TASK-3"
+      ],
+      "requirements": [
+        "FR-005",
+        "AC-005"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "verify",
+          "kind": "command",
+          "command": "python -m pytest tests/test_agent_config.py -v",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Create YAML-based agent config with validation",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-27T11:46:05.998Z",
+      "updated_at": "2026-09-27T11:46:05.999Z",
+      "base_manifest": {
+        ".env": "091909bfe90b9ab550edc878e38b3703540cce89cc59ac529b678a831d1b75b1",
+        ".gitignore": "75251acccf72b54b758b79c46585fa366ecf5430a19dce2abad2a98242d5778d",
+        ".python-version": "cf842d27b2e4ee76c96e26412d2fee454f74632d6a35f1fd821a5020da0b3965",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "README.md": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "SPEC.md": "f251df7d8a684f2ad63cca9fcd4107b3c1db7e815be9e5df63375443950e79c8",
+        "config.json": "f1e454dd8e1a41a4f8101fd6d463a35c720cbf940da5ebe9cb4d692f046e90b7",
+        "main.py": "36c2d37403ad19aebebee393a6959153a723dd9c6c04c081d52bcd51f6055a6f",
+        "pyproject.toml": "39a612922a8ffba4fb1b37cc58ebd7eea1bdb2b283abef3111c7a67fb1c9bcd0",
+        "src/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "src/experiments.py": "d60ef002b71bf4619c7057689ad643a4fcb0f7c0330d6fe598124eb0d33eaa85",
+        "src/models/__init__.py": "985f32437eefcef5065a41b9b715db535d8f684b82ed793149ac0e0a7c700627",
+        "src/models/types.py": "9a385a25563c2ecadcf343edd8a1ca5c2fb6116271c5c492c4769455b70df52e",
+        "src/projects.py": "18c6fd90fc7d1b3febd01af1f7993d53c084a9e58f86dd8b50fd7e835a258eac",
+        "src/providers/__init__.py": "2eced958d6c8fd47805faa2de05aa3d6ddc4efc411b20763ff170376ffb76476",
+        "src/providers/base.py": "98f23bcdd947ce5c1c7550ee7545fcda87b4d72252012212b3fb6f8add5adb3a",
+        "src/registry.py": "5a33fae36a537a728573116e6767e73550055517032ac6ff3e333c6f03d4897e",
+        "src/storage/__init__.py": "53ac97ef0f76901d4cd77dbe5130c9e7184e648679b68136c5620f9a88373753",
+        "src/storage/file_store.py": "6d9339e82403faccc497e5aef4f07d690841dd9065948c519889eb0654d04821",
+        "tests/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "tests/test_experiments.py": "82196b29989a3eab2ff0c5c7ef15ce63a59c53526d32af6cc01f211873c60cee",
+        "tests/test_foundation.py": "4878930b876a6ca697b15e42ebb0b22b44deff155f1ae17cb779ad9fa210752e",
+        "tests/test_projects.py": "2a8e69e21a89f44e9f452af292c2472fc70036a0583bee4881ba301e6d1cc1f5",
+        "tests/test_registry.py": "0a511973ffd8602a570e69bb093fbe4be5ef2c7d27af8edbd165940d81d302b1",
+        "tests/test_storage.py": "1502b01b65268455ea3b86337fb481d5f335979b4ed798b0fbe99e023a4dc276",
+        "uv.lock": "11f323f30bf7ccac532ac0b9c1f9cae675dfadb7c663f9a2b68b6a9623a4618b",
+        "voice-agent-engineering-workbench.md": "39ea5f45d25596aa92d4ecb22d305134b83af4fbb80dea08f67b9e2d7061e812"
+      }
+    },
+    {
+      "id": "TASK-7",
+      "outcome": "Implement decision records with provenance",
+      "state": "done",
+      "risk": "low",
+      "owner": null,
+      "scope": [
+        "src",
+        "tests"
+      ],
+      "dependencies": [
+        "TASK-2"
+      ],
+      "requirements": [
+        "FR-006",
+        "AC-006"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "verify",
+          "kind": "command",
+          "command": "python -m pytest tests/test_decisions.py -v",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Create decision record storage with full provenance tracking",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-27T11:46:07.923Z",
+      "updated_at": "2026-09-27T11:46:07.924Z",
+      "base_manifest": {
+        ".env": "091909bfe90b9ab550edc878e38b3703540cce89cc59ac529b678a831d1b75b1",
+        ".gitignore": "75251acccf72b54b758b79c46585fa366ecf5430a19dce2abad2a98242d5778d",
+        ".python-version": "cf842d27b2e4ee76c96e26412d2fee454f74632d6a35f1fd821a5020da0b3965",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "README.md": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "SPEC.md": "f251df7d8a684f2ad63cca9fcd4107b3c1db7e815be9e5df63375443950e79c8",
+        "config.json": "f1e454dd8e1a41a4f8101fd6d463a35c720cbf940da5ebe9cb4d692f046e90b7",
+        "main.py": "36c2d37403ad19aebebee393a6959153a723dd9c6c04c081d52bcd51f6055a6f",
+        "pyproject.toml": "39a612922a8ffba4fb1b37cc58ebd7eea1bdb2b283abef3111c7a67fb1c9bcd0",
+        "src/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "src/agent_config.py": "d7acfe9fa459494c83984780f4d297cee0a3b912321e5f09d67ed32bb10922f9",
+        "src/experiments.py": "d60ef002b71bf4619c7057689ad643a4fcb0f7c0330d6fe598124eb0d33eaa85",
+        "src/models/__init__.py": "985f32437eefcef5065a41b9b715db535d8f684b82ed793149ac0e0a7c700627",
+        "src/models/types.py": "9a385a25563c2ecadcf343edd8a1ca5c2fb6116271c5c492c4769455b70df52e",
+        "src/projects.py": "18c6fd90fc7d1b3febd01af1f7993d53c084a9e58f86dd8b50fd7e835a258eac",
+        "src/providers/__init__.py": "2eced958d6c8fd47805faa2de05aa3d6ddc4efc411b20763ff170376ffb76476",
+        "src/providers/base.py": "98f23bcdd947ce5c1c7550ee7545fcda87b4d72252012212b3fb6f8add5adb3a",
+        "src/registry.py": "5a33fae36a537a728573116e6767e73550055517032ac6ff3e333c6f03d4897e",
+        "src/storage/__init__.py": "53ac97ef0f76901d4cd77dbe5130c9e7184e648679b68136c5620f9a88373753",
+        "src/storage/file_store.py": "6d9339e82403faccc497e5aef4f07d690841dd9065948c519889eb0654d04821",
+        "tests/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "tests/test_agent_config.py": "9a93345bdb6e75fec4f3a9cdc3db3698f3984b8a30aa7960ab3bbc8c621028e9",
+        "tests/test_experiments.py": "82196b29989a3eab2ff0c5c7ef15ce63a59c53526d32af6cc01f211873c60cee",
+        "tests/test_foundation.py": "4878930b876a6ca697b15e42ebb0b22b44deff155f1ae17cb779ad9fa210752e",
+        "tests/test_projects.py": "2a8e69e21a89f44e9f452af292c2472fc70036a0583bee4881ba301e6d1cc1f5",
+        "tests/test_registry.py": "0a511973ffd8602a570e69bb093fbe4be5ef2c7d27af8edbd165940d81d302b1",
+        "tests/test_storage.py": "1502b01b65268455ea3b86337fb481d5f335979b4ed798b0fbe99e023a4dc276",
+        "uv.lock": "11f323f30bf7ccac532ac0b9c1f9cae675dfadb7c663f9a2b68b6a9623a4618b",
+        "voice-agent-engineering-workbench.md": "39ea5f45d25596aa92d4ecb22d305134b83af4fbb80dea08f67b9e2d7061e812"
+      }
+    },
+    {
+      "id": "TASK-8",
+      "outcome": "Implement cost calculator",
+      "state": "done",
+      "risk": "low",
+      "owner": null,
+      "scope": [
+        "src",
+        "tests"
+      ],
+      "dependencies": [
+        "TASK-3"
+      ],
+      "requirements": [
+        "FR-007",
+        "AC-007"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "verify",
+          "kind": "command",
+          "command": "python -m pytest tests/test_costs.py -v",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Create cost estimation engine with per-component breakdown",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-27T11:46:09.882Z",
+      "updated_at": "2026-09-27T11:46:09.883Z",
+      "base_manifest": {
+        ".env": "091909bfe90b9ab550edc878e38b3703540cce89cc59ac529b678a831d1b75b1",
+        ".gitignore": "75251acccf72b54b758b79c46585fa366ecf5430a19dce2abad2a98242d5778d",
+        ".python-version": "cf842d27b2e4ee76c96e26412d2fee454f74632d6a35f1fd821a5020da0b3965",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "README.md": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "SPEC.md": "f251df7d8a684f2ad63cca9fcd4107b3c1db7e815be9e5df63375443950e79c8",
+        "config.json": "f1e454dd8e1a41a4f8101fd6d463a35c720cbf940da5ebe9cb4d692f046e90b7",
+        "main.py": "36c2d37403ad19aebebee393a6959153a723dd9c6c04c081d52bcd51f6055a6f",
+        "pyproject.toml": "39a612922a8ffba4fb1b37cc58ebd7eea1bdb2b283abef3111c7a67fb1c9bcd0",
+        "src/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "src/agent_config.py": "d7acfe9fa459494c83984780f4d297cee0a3b912321e5f09d67ed32bb10922f9",
+        "src/decisions.py": "b0bc5d23f7f30db6c29ef81c0168b3115566fab3ce276073951db6e98ef116bb",
+        "src/experiments.py": "d60ef002b71bf4619c7057689ad643a4fcb0f7c0330d6fe598124eb0d33eaa85",
+        "src/models/__init__.py": "985f32437eefcef5065a41b9b715db535d8f684b82ed793149ac0e0a7c700627",
+        "src/models/types.py": "9a385a25563c2ecadcf343edd8a1ca5c2fb6116271c5c492c4769455b70df52e",
+        "src/projects.py": "18c6fd90fc7d1b3febd01af1f7993d53c084a9e58f86dd8b50fd7e835a258eac",
+        "src/providers/__init__.py": "2eced958d6c8fd47805faa2de05aa3d6ddc4efc411b20763ff170376ffb76476",
+        "src/providers/base.py": "98f23bcdd947ce5c1c7550ee7545fcda87b4d72252012212b3fb6f8add5adb3a",
+        "src/registry.py": "5a33fae36a537a728573116e6767e73550055517032ac6ff3e333c6f03d4897e",
+        "src/storage/__init__.py": "53ac97ef0f76901d4cd77dbe5130c9e7184e648679b68136c5620f9a88373753",
+        "src/storage/file_store.py": "6d9339e82403faccc497e5aef4f07d690841dd9065948c519889eb0654d04821",
+        "tests/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "tests/test_agent_config.py": "9a93345bdb6e75fec4f3a9cdc3db3698f3984b8a30aa7960ab3bbc8c621028e9",
+        "tests/test_decisions.py": "1915bdab398553d5130f3ba25fdc0f91ec7c0ec3360ea1ba6661780649b57ca7",
+        "tests/test_experiments.py": "82196b29989a3eab2ff0c5c7ef15ce63a59c53526d32af6cc01f211873c60cee",
+        "tests/test_foundation.py": "4878930b876a6ca697b15e42ebb0b22b44deff155f1ae17cb779ad9fa210752e",
+        "tests/test_projects.py": "2a8e69e21a89f44e9f452af292c2472fc70036a0583bee4881ba301e6d1cc1f5",
+        "tests/test_registry.py": "0a511973ffd8602a570e69bb093fbe4be5ef2c7d27af8edbd165940d81d302b1",
+        "tests/test_storage.py": "1502b01b65268455ea3b86337fb481d5f335979b4ed798b0fbe99e023a4dc276",
+        "uv.lock": "11f323f30bf7ccac532ac0b9c1f9cae675dfadb7c663f9a2b68b6a9623a4618b",
+        "voice-agent-engineering-workbench.md": "39ea5f45d25596aa92d4ecb22d305134b83af4fbb80dea08f67b9e2d7061e812"
+      }
+    },
+    {
+      "id": "TASK-9",
+      "outcome": "Implement CLI interface for all modules",
+      "state": "done",
+      "risk": "low",
+      "owner": null,
+      "scope": [
+        "src",
+        "tests"
+      ],
+      "dependencies": [
+        "TASK-2",
+        "TASK-3",
+        "TASK-4",
+        "TASK-5",
+        "TASK-6",
+        "TASK-7",
+        "TASK-8"
+      ],
+      "requirements": [
+        "NFR-001"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "verify",
+          "kind": "command",
+          "command": "python -m pytest tests/test_cli.py -v",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Create CLI commands using click or argparse",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-27T11:46:28.352Z",
+      "updated_at": "2026-09-27T11:46:28.353Z"
+    },
+    {
+      "id": "TASK-10",
+      "outcome": "Implement local file-based storage layer",
+      "state": "done",
+      "risk": "low",
+      "owner": null,
+      "scope": [
+        "src",
+        "tests"
+      ],
+      "dependencies": [
+        "TASK-1"
+      ],
+      "requirements": [
+        "NFR-002"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "verify",
+          "kind": "command",
+          "command": "python -m pytest tests/test_storage.py -v",
+          "mandatory": true,
+          "status": "pending",
+          "evidence": null
+        }
+      ],
+      "next_action": "Create YAML/JSON file storage with atomic writes",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-27T11:46:30.499Z",
+      "updated_at": "2026-09-27T11:46:30.5Z",
+      "base_manifest": {
+        ".env": "091909bfe90b9ab550edc878e38b3703540cce89cc59ac529b678a831d1b75b1",
+        ".gitignore": "70693737f482cd0376c4938c3c4df7f65fe2b1e070c101ff411a3f26da6a6adc",
+        ".python-version": "cf842d27b2e4ee76c96e26412d2fee454f74632d6a35f1fd821a5020da0b3965",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "README.md": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "SPEC.md": "f251df7d8a684f2ad63cca9fcd4107b3c1db7e815be9e5df63375443950e79c8",
+        "config.json": "f1e454dd8e1a41a4f8101fd6d463a35c720cbf940da5ebe9cb4d692f046e90b7",
+        "main.py": "36c2d37403ad19aebebee393a6959153a723dd9c6c04c081d52bcd51f6055a6f",
+        "pyproject.toml": "39a612922a8ffba4fb1b37cc58ebd7eea1bdb2b283abef3111c7a67fb1c9bcd0",
+        "src/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "src/models/__init__.py": "985f32437eefcef5065a41b9b715db535d8f684b82ed793149ac0e0a7c700627",
+        "src/models/types.py": "9a385a25563c2ecadcf343edd8a1ca5c2fb6116271c5c492c4769455b70df52e",
+        "src/projects.py": "18c6fd90fc7d1b3febd01af1f7993d53c084a9e58f86dd8b50fd7e835a258eac",
+        "src/providers/__init__.py": "2eced958d6c8fd47805faa2de05aa3d6ddc4efc411b20763ff170376ffb76476",
+        "src/providers/base.py": "98f23bcdd947ce5c1c7550ee7545fcda87b4d72252012212b3fb6f8add5adb3a",
+        "src/registry.py": "5a33fae36a537a728573116e6767e73550055517032ac6ff3e333c6f03d4897e",
+        "src/storage/__init__.py": "53ac97ef0f76901d4cd77dbe5130c9e7184e648679b68136c5620f9a88373753",
+        "src/storage/file_store.py": "6d9339e82403faccc497e5aef4f07d690841dd9065948c519889eb0654d04821",
+        "tests/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "tests/test_foundation.py": "4878930b876a6ca697b15e42ebb0b22b44deff155f1ae17cb779ad9fa210752e",
+        "tests/test_projects.py": "2a8e69e21a89f44e9f452af292c2472fc70036a0583bee4881ba301e6d1cc1f5",
+        "tests/test_registry.py": "0a511973ffd8602a570e69bb093fbe4be5ef2c7d27af8edbd165940d81d302b1",
+        "uv.lock": "11f323f30bf7ccac532ac0b9c1f9cae675dfadb7c663f9a2b68b6a9623a4618b",
+        "voice-agent-engineering-workbench.md": "39ea5f45d25596aa92d4ecb22d305134b83af4fbb80dea08f67b9e2d7061e812"
+      }
+    },
+    {
+      "id": "TASK-11",
+      "outcome": "Ensure all configs and records are version-controlled",
+      "state": "done",
+      "risk": "low",
+      "owner": null,
+      "scope": [
+        ".gitignore"
+      ],
+      "dependencies": [],
+      "requirements": [
+        "NFR-005"
+      ],
+      "inputs": [],
+      "environment": [],
+      "scenarios": [],
+      "gates": [
+        {
+          "id": "verify",
+          "kind": "command",
+          "command": "git status --porcelain",
+          "mandatory": true,
+          "status": "pass",
+          "evidence": {
+            "path": ".genesis/evidence/TASK-11-verify-973edd43-104c-4a99-bb2b-007978ee0f65.json",
+            "hash": "248ed9a6cfb3b57fbed8854f5a2928e23f8a5ec34b96ce0a7502238cd1d05623",
+            "source_hash": "17f19dfe1e1c23779293ea3bebb27d5d83434616c541a055361b82d89e149120",
+            "config_hash": "8e86f859725a3dbcb185e149557c21f7381644793c93d1737ec6412b3c96a37c",
+            "observed_at": "2026-09-27T12:01:25.023Z"
+          }
+        }
+      ],
+      "next_action": "Add appropriate .gitignore rules and ensure configs are committed",
+      "blocker": null,
+      "notes": [],
+      "failures": [],
+      "limitations": [],
+      "created_at": "2026-09-27T11:46:32.731Z",
+      "updated_at": "2026-09-27T12:01:34.081Z",
+      "base_manifest": {
+        ".env": "091909bfe90b9ab550edc878e38b3703540cce89cc59ac529b678a831d1b75b1",
+        ".gitignore": "70693737f482cd0376c4938c3c4df7f65fe2b1e070c101ff411a3f26da6a6adc",
+        ".python-version": "cf842d27b2e4ee76c96e26412d2fee454f74632d6a35f1fd821a5020da0b3965",
+        "AGENTS.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "CLAUDE.md": "a67615d8ed1ed3dd1b0d2cbf874ceb8d4a285c3335cdfc2d785ec80a06daecc1",
+        "README.md": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "SPEC.md": "f251df7d8a684f2ad63cca9fcd4107b3c1db7e815be9e5df63375443950e79c8",
+        "config.json": "f1e454dd8e1a41a4f8101fd6d463a35c720cbf940da5ebe9cb4d692f046e90b7",
+        "main.py": "36c2d37403ad19aebebee393a6959153a723dd9c6c04c081d52bcd51f6055a6f",
+        "pyproject.toml": "39a612922a8ffba4fb1b37cc58ebd7eea1bdb2b283abef3111c7a67fb1c9bcd0",
+        "src/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "src/models/__init__.py": "985f32437eefcef5065a41b9b715db535d8f684b82ed793149ac0e0a7c700627",
+        "src/models/types.py": "9a385a25563c2ecadcf343edd8a1ca5c2fb6116271c5c492c4769455b70df52e",
+        "src/projects.py": "18c6fd90fc7d1b3febd01af1f7993d53c084a9e58f86dd8b50fd7e835a258eac",
+        "src/providers/__init__.py": "2eced958d6c8fd47805faa2de05aa3d6ddc4efc411b20763ff170376ffb76476",
+        "src/providers/base.py": "98f23bcdd947ce5c1c7550ee7545fcda87b4d72252012212b3fb6f8add5adb3a",
+        "src/registry.py": "5a33fae36a537a728573116e6767e73550055517032ac6ff3e333c6f03d4897e",
+        "src/storage/__init__.py": "53ac97ef0f76901d4cd77dbe5130c9e7184e648679b68136c5620f9a88373753",
+        "src/storage/file_store.py": "6d9339e82403faccc497e5aef4f07d690841dd9065948c519889eb0654d04821",
+        "tests/__init__.py": "78fb5f112b9e331e6d45cc7ba20c364344137c40dce44296fbdbe7854ba5bea2",
+        "tests/test_foundation.py": "4878930b876a6ca697b15e42ebb0b22b44deff155f1ae17cb779ad9fa210752e",
+        "tests/test_projects.py": "2a8e69e21a89f44e9f452af292c2472fc70036a0583bee4881ba301e6d1cc1f5",
+        "tests/test_registry.py": "0a511973ffd8602a570e69bb093fbe4be5ef2c7d27af8edbd165940d81d302b1",
+        "uv.lock": "11f323f30bf7ccac532ac0b9c1f9cae675dfadb7c663f9a2b68b6a9623a4618b",
+        "voice-agent-engineering-workbench.md": "39ea5f45d25596aa92d4ecb22d305134b83af4fbb80dea08f67b9e2d7061e812"
+      }
+    }
+  ],
+  "learning_proposals": [],
+  "cleanup_proposals": [],
+  "controls": [],
+  "attempts": [
+    {
+      "id": "ff811aae-a692-486c-9d40-51c16dd8c6aa",
+      "task": "TASK-1",
+      "kind": "gate",
+      "command": "python -c \"from src.providers.base import STTProvider, TTSProvider, LLMProvider, VADProvider; print('protocols ok')\"",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 13796,
+      "child_pid": 34512,
+      "started_at": "2026-09-27T11:53:57.874Z",
+      "status": "passed",
+      "before_hash": "92b603fa9cd019dcbc957e613c5a992435883f1a4d81f23866d194a057e0a8cb",
+      "config_hash": "2834759c84a25cc745c9c76bb3be7ddd42bffe20a695b43b283a2bf1fc1265de",
+      "environment": {
+        "node": "v24.11.1",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-27T11:53:59.229Z"
+    },
+    {
+      "id": "524e4318-5642-431d-9b3c-28e02cfd63d1",
+      "task": "TASK-2",
+      "kind": "gate",
+      "command": "python -m pytest tests/test_projects.py -v",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 29740,
+      "child_pid": 16552,
+      "started_at": "2026-09-27T11:56:48.273Z",
+      "status": "passed",
+      "before_hash": "8059e57f7bec15b938fe33206d1ad3e6a5ecdbabfb6309acfbd205b35fc3d434",
+      "config_hash": "d54bab7ddc42ba38f544af8770f947ee33b6338af91a757c9f9ced5afa3d3ef9",
+      "environment": {
+        "node": "v24.11.1",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-27T11:56:49.9Z"
+    },
+    {
+      "id": "602b9093-eb2f-47ff-b0b9-20635121c7ca",
+      "task": "TASK-3",
+      "kind": "gate",
+      "command": "python -m pytest tests/test_registry.py -v",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 21016,
+      "child_pid": 21196,
+      "started_at": "2026-09-27T11:59:11.049Z",
+      "status": "passed",
+      "before_hash": "07ff1041612b6076e922311e154460e20333719d171c7d29eb20a33d31ba83aa",
+      "config_hash": "8e05a3cb6d3da22c700a62402fab3f8c40a4e22b13fc653445b962cfc3daab6b",
+      "environment": {
+        "node": "v24.11.1",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-27T11:59:13.264Z"
+    },
+    {
+      "id": "973edd43-104c-4a99-bb2b-007978ee0f65",
+      "task": "TASK-11",
+      "kind": "gate",
+      "command": "git status --porcelain",
+      "timeout": 120000,
+      "authorization": null,
+      "pid": 11928,
+      "child_pid": 6788,
+      "started_at": "2026-09-27T12:01:23.274Z",
+      "status": "passed",
+      "before_hash": "17f19dfe1e1c23779293ea3bebb27d5d83434616c541a055361b82d89e149120",
+      "config_hash": "8e86f859725a3dbcb185e149557c21f7381644793c93d1737ec6412b3c96a37c",
+      "environment": {
+        "node": "v24.11.1",
+        "platform": "win32",
+        "arch": "x64",
+        "verifier": "358371454f03eb4fdfd3eda3cb1d18cb1dd8fe9445404bb3d3047267b3977eb9",
+        "variables": {}
+      },
+      "cost": null,
+      "stop_reason": null,
+      "ended_at": "2026-09-27T12:01:25.023Z"
+    }
+  ],
+  "authorizations": [],
+  "experiments": [],
+  "incidents": [],
+  "discovery": {
+    "files": 9,
+    "languages": [
+      "python"
+    ],
+    "extensions": {
+      ".env": 1,
+      ".gitignore": 1,
+      ".json": 1,
+      ".lock": 1,
+      ".md": 2,
+      ".py": 1,
+      ".python-version": 1,
+      ".toml": 1
+    },
+    "commands": {
+      "test": {
+        "command": "python -m pytest",
+        "status": "unverified",
+        "source": "pyproject.toml"
+      }
+    },
+    "legacy_genesis": false,
+    "revision": {
+      "commit": "828851d012f829775da5196145528456e263497d",
+      "dirty": true,
+      "source_hash": "df060c4fb0f0863501205cca3403345b2cefdd41bfa82395269658421d15a923"
+    }
+  },
+  "checkpoint": {
+    "at": "2026-09-27T12:16:34.898Z",
+    "revision": {
+      "commit": "828851d012f829775da5196145528456e263497d",
+      "dirty": true,
+      "source_hash": "9b887f458e57cc9fb0cda264c4fb3685a0f9a1269afb4eee50e379aa2a18cc44"
+    },
+    "active_task": null,
+    "next_action": "Add the next approved implementation task."
+  },
+  "legacy": null
+}

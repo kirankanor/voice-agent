@@ -1,0 +1,14 @@
+capabilities:
+  function_calling: true
+  streaming: true
+category: llm
+constraints: {}
+economics:
+  price_per_1k_tokens: 0.002
+id: openai
+integration:
+  python_support: true
+  sdk: openai
+name: OpenAI
+performance:
+  latency_ms: 500

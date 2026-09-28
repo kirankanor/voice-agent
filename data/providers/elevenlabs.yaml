@@ -1,0 +1,14 @@
+capabilities:
+  streaming: true
+  voice_clone: true
+category: tts
+constraints: {}
+economics:
+  price_per_character: 3.0e-05
+id: elevenlabs
+integration:
+  python_support: true
+  sdk: elevenlabs
+name: ElevenLabs
+performance:
+  latency_ms: 200
